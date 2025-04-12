@@ -1,0 +1,91 @@
+Word,Level,Hint
+Computer,A1,"A device that processes data and performs tasks based on instructions (software), such as a desktop or laptop."
+Software,A2,"A collection of programs and applications that run on a computer or device, enabling it to perform specific functions."
+System,B1,"A set of interconnected components that work together to achieve a particular goal, often referring to the hardware and software that form a computing environment."
+Network,A1,"A group of computers or devices connected together to share data and resources, either locally (LAN) or globally (WAN)."
+Database,A2,"A structured collection of data that can be easily accessed, managed, and updated, typically stored on a server."
+Analysis,B1,The process of breaking down complex information into smaller components for better understanding.
+Internet,A1,A global network of interconnected computers and servers that allows for the exchange of information and access to online resources.
+User,A2,"A person who interacts with a system, application, or device, often with the goal of performing specific tasks or accessing data."
+Requirement,B1,"A specification or condition that a system, product, or service must meet to satisfy stakeholders or users."
+Website,A1,"A collection of web pages, often interlinked, accessible via the internet, which provides information or services to users."
+Application,A2,"A software program designed to perform specific tasks for the user, such as word processing, browsing, or managing data."
+Workflow,B1,"A sequence of tasks or steps required to complete a process, often involving the movement of information or tasks between users or systems."
+Data,A1,"Information, often in raw form, that can be processed or analyzed to produce meaningful results or insights."
+Development,A2,"The process of creating or improving software, systems, or products, involving planning, coding, testing, and implementation."
+Solution,B1,A method or product designed to address and resolve a problem or meet a specific requirement or need.
+Screen,A1,"The display area on a computer, phone, or other device where visual information is shown."
+Function,A2,No description available.
+Process,B1,No description available.
+File,A1,"A collection of data or information stored on a computer or server, which can be accessed, opened, edited, and saved."
+Update,A2,"The process of making improvements or fixes to software or systems, often to enhance performance or security."
+Documentation,B1,"Written records or guides that provide detailed information about systems, software, or processes."
+Email,A1,A method of exchanging messages and information over the internet using electronic mail systems.
+Install,A2,The process of setting up software or applications on a computer or device so that it can be used.
+Integration,B1,"The process of combining different systems, software, or components to work together as a unified whole."
+Click,A1,An action performed by pressing a button on a mouse or other input device to select or interact with a system or interface.
+Backup,A2,A copy of important data or files stored in a secure location to prevent loss in case of failure or data corruption.
+Configuration,B1,"The arrangement or setup of software, hardware, or systems to ensure they work together and perform correctly."
+Password,A1,A secret string of characters used to authenticate a user and grant access to a system or account.
+Security,A2,"Measures taken to protect systems, data, and networks from unauthorized access, damage, or theft."
+Architecture,B1,"The design and structure of a system, application, or network, outlining how its components interact and function together."
+Icon,A1,"A small visual representation or symbol used to represent an application, file, function, or concept on a computer interface."
+Version,A2,"A specific iteration or release of a software program, often numbered to indicate updates or changes from previous versions."
+Stakeholder,B1,"A person, group, or organization that has an interest or concern in a project, product, or service and is affected by its outcome."
+Laptop,A1,No description available.
+Interface,A2,"The point of interaction between a user and a system, application, or device, enabling input and output."
+User Experience,B1,"The overall experience a person has when interacting with a system or application, including factors like usability, design, and satisfaction."
+Keyboard,A1,An input device used for typing text and commands into a computer or other electronic device.
+Platform,A2,"The underlying system or environment (hardware and/or software) that supports and runs applications, services, or technologies."
+Performance,B1,"The efficiency and effectiveness of a system, application, or device in completing tasks, often measured by speed, reliability, and resource usage."
+Browser,A1,"A software application used to access and navigate the internet, such as Chrome, Firefox, or Safari."
+Support,A2,"Assistance or help provided to users or customers to resolve issues with software, hardware, or services."
+Automation,B1,"The use of technology to perform tasks or processes without human intervention, often to increase efficiency and consistency."
+Folder,A1,A digital container used to organize and store files and other folders on a computer or device.
+Testing,A2,"The process of evaluating software, systems, or processes to identify bugs, errors, or issues, and to ensure they meet requirements."
+Process Mapping,B1,A method used to visually represent the steps and flow of a business or system process to improve understanding and efficiency.
+Requirement,B2,"A specification or condition that a system, product, or service must meet to satisfy stakeholders or users."
+Stakeholder,C1,"A person, group, or organization that has an interest or concern in a project, product, or service and is affected by its outcome."
+Scope,C2,"The defined boundaries of a project, detailing what will and won’t be included in the project deliverables."
+User Story,B2,"A simple description of a feature or functionality from the perspective of the user, often used in Agile development to communicate needs."
+Backlog,C1,"A prioritized list of tasks, features, or requirements that need to be completed for a product, often managed in Agile methodology."
+Solution Design,C2,The phase of project development where the system’s architecture and components are outlined to meet the project’s objectives.
+Feature,B2,"A specific functionality or characteristic of a product or system, typically developed to meet user needs or business requirements."
+Sprint,C1,"A short, time-boxed period in Agile development where a team works to complete a set of tasks or deliverables."
+Deliverable,C2,"A tangible or intangible output or result produced during or at the end of a project phase, often including software, reports, or documents."
+Priority,B2,"The importance or urgency of tasks or requirements, often used to guide decision-making and focus efforts."
+Milestone,C1,"A significant point or achievement in a project timeline, used to track progress or mark the completion of key tasks."
+Strategic Alignment,C2,"The process of ensuring that a project or initiative supports the overall goals, vision, and strategy of an organization."
+Task,B2,"A specific, well-defined piece of work to be completed as part of a project or process."
+Sprint Planning,C1,"The process of determining the tasks and goals for an upcoming sprint in Agile development, usually involving the team and product owner."
+Business Case,C2,"A document or justification that outlines the reasons, benefits, and costs for undertaking a project, often used to secure funding or approval."
+Business Process,B2,A series of steps or activities that define how work is performed within an organization to achieve a particular outcome.
+Product Roadmap,C1,"A high-level visual summary that outlines the vision, strategy, and planned development for a product over time."
+Market Research,C2,"The process of gathering and analyzing data about customers, competitors, and the market to inform product development and business strategy."
+Goal,B2,A desired outcome or target that an organization or project aims to achieve within a specific time frame.
+Risk Assessment,C1,"The process of identifying, analyzing, and evaluating potential risks in a project or business context."
+Value Proposition,C2,"The unique value or benefit that a product or service offers to customers, distinguishing it from competitors."
+Workflow,B2,"A sequence of tasks or steps required to complete a process, often involving the movement of information or tasks between users or systems."
+Key Performance Indicator,C1,"A measurable value that indicates how well a company, team, or project is achieving its objectives."
+Change Management,C2,"A structured approach to managing and implementing change within an organization, ensuring minimal disruption and maximizing adoption."
+Functional,B2,Referring to the capabilities or features of a system or product that allow it to perform its intended tasks or purposes.
+User Flow,C1,"The visual or logical path a user takes through a system, website, or application to complete a specific task or goal."
+Governance,C2,"The processes, policies, and guidelines that ensure a system, project, or organization operates effectively, efficiently, and in compliance with standards."
+Test Case,B2,"A set of conditions or actions used to verify whether a system or component functions as expected, typically in software testing."
+Product Iteration,C1,"A version or update of a product, developed based on feedback and improvements from previous iterations."
+Dependency Management,C2,"The process of identifying, tracking, and handling dependencies between tasks, features, or components to ensure smooth project execution."
+Acceptance Criteria,B2,The specific conditions or requirements that must be met for a product or feature to be considered complete and acceptable to stakeholders.
+Agile Methodology,C1,"A project management and software development approach that emphasizes flexibility, iterative progress, and close collaboration between teams and stakeholders."
+Stakeholder Management,C2,The process of managing relationships and communication with stakeholders to ensure their needs and expectations are met throughout a project.
+Resource Allocation,B2,"The process of assigning or distributing available resources (people, time, money) to tasks or projects in order to meet objectives."
+Functional Specification,C1,"A detailed description of the system�s functionality, including what the system will do and how it will behave under different conditions."
+Project Scope,C2,"The specific deliverables, boundaries, tasks, and timelines that define a project, including what is in and out of scope."
+Use Case,B2,A detailed description of how users interact with a system or product to achieve specific goals or outcomes.
+Release Management,C1,"The process of planning, scheduling, and controlling the deployment of software or systems to production environments."
+Continuous Improvement,C2,"An ongoing effort to improve processes, products, or systems incrementally over time, often through feedback and iterative development."
+Deadline,B2,"A specific date or time by which a task, project, or deliverable must be completed or submitted."
+Product Backlog,C1,"A prioritized list of features, tasks, or requirements for a product that is used as the basis for planning and development in Agile projects."
+Business Requirement,C2,"A description of a business need or goal that a product, system, or service must meet in order to be considered successful."
+Documentation,B2,"Written records or guides that provide detailed information about systems, software, or processes."
+Design Specification,C1,"A detailed blueprint or plan that outlines the design, features, and functionality of a product or system."
+End-to-End Solution,C2,"A complete solution that addresses all aspects of a problem or need, from the initial requirement to the final deliverable and beyond."
