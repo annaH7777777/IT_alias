@@ -421,9 +421,17 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 87.95
       objectReference: {fileID: 0}
+    - target: {fileID: 4977886549519879317, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5402731327735271823, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
       propertyPath: m_Name
       value: ShowHintButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402731327735271823, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7611592813626569719, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
       propertyPath: m_Pivot.x
@@ -509,7 +517,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasWord Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7611592813626569719, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}

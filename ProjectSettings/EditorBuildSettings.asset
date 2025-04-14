@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WordScene.unity
     guid: 65aa8b3f151894247a75b84aa2bf6743
+  - enabled: 1
+    path: Assets/Scenes/ChallengeScene.unity
+    guid: 1efdd261c8ee07f43935c833c82763a7
   m_configObjects: {}

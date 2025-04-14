@@ -44,4 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86dd18bde6cee0f4791d005bae45e43a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordList: []
+  googleSheetURL: https://docs.google.com/spreadsheets/d/e/2PACX-1vQeIfCjmOtYBWoOHrqUba0Wvzj5DgtE4SwsbzOQV82hERSeuF7KnDj3aDx4Mf2_0A/pub?gid=1998752477&single=true&output=csv
+  _readFromGoogleSheet: 1
+  a1WordList: []
+  a2WordList: []
+  b1WordList: []
+  b2WordList: []
+  c1WordList: []
+  c2WordList: []

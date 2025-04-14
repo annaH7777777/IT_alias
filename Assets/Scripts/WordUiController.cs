@@ -38,4 +38,9 @@ public class WordUiController : MonoBehaviour
         wordText.text = word.word;
         hintText.text = word.hint;
     }
+
+    public void HideHint()
+    {
+        hintText.gameObject.SetActive(false);
+    }
 }

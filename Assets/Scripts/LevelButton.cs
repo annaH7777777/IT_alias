@@ -21,6 +21,6 @@ public class LevelButton : MonoBehaviour
     private void OnClick()
     {
         PlayerPrefs.SetString("Level", level);
-        SceneManager.LoadScene(2);
+
     }
 }
