@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find '/c/Unity Projects/Alias' -name *test* -o -name *Test*)"
+      "Bash(find '/c/Unity Projects/Alias' -name *test* -o -name *Test*)",
+      "Bash(find '/c/Unity Projects/Alias/Assets' -type f \\\\\\(-name *.png -o -name *.jpg -o -name *.jpeg \\\\\\))",
+      "Bash(ls -lh \"/c/Unity Projects/Alias/Assets/TextMesh Pro/Resources/Fonts & Materials\")"
     ]
   }
 }
