@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find '/c/Unity Projects/Alias' -name *test* -o -name *Test*)"
+    ]
+  }
+}
