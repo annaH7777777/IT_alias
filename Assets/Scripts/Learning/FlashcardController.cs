@@ -22,6 +22,7 @@ public class FlashcardController : MonoBehaviour
     private TextMeshProUGUI _translationText;
     private TextMeshProUGUI _synonymText;
     private TextMeshProUGUI _dateText;
+    private TextMeshProUGUI _frontDateText;
     private TextMeshProUGUI _progressText;
     private RectTransform _cardRect;
     private GameObject _frontSide;
@@ -141,8 +142,15 @@ public class FlashcardController : MonoBehaviour
             fontSize: 36, alignment: TextAlignmentOptions.Center,
             color: new Color32(120, 120, 140, 255));
 
+        _frontDateText = CreateText(frontRect, "FrontDateText",
+            anchorMin: new Vector2(0, 0.1f), anchorMax: new Vector2(1, 0.2f),
+            pivot: new Vector2(0.5f, 0.5f),
+            offsetMin: Vector2.zero, offsetMax: Vector2.zero,
+            fontSize: 26, alignment: TextAlignmentOptions.Center,
+            color: Theme.TextMuted);
+
         var tapHint = CreateText(frontRect, "TapHint",
-            anchorMin: new Vector2(0, 0.02f), anchorMax: new Vector2(1, 0.15f),
+            anchorMin: new Vector2(0, 0.02f), anchorMax: new Vector2(1, 0.1f),
             pivot: new Vector2(0.5f, 0.5f),
             offsetMin: Vector2.zero, offsetMax: Vector2.zero,
             fontSize: 26, alignment: TextAlignmentOptions.Center,
@@ -217,6 +225,7 @@ public class FlashcardController : MonoBehaviour
         _synonymText.text = string.IsNullOrEmpty(word.synonym) ? "" : $"syn: {word.synonym}";
         _dateText.text = string.IsNullOrEmpty(word.date) ? "" : word.date;
 
+        _frontDateText.text = string.IsNullOrEmpty(word.date) ? "" : word.date;
         _progressText.text = $"{_currentIndex + 1} / {_words.Count}";
 
         // Reset to front side
