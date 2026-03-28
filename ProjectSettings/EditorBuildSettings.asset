@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ChallengeScene.unity
     guid: 1efdd261c8ee07f43935c833c82763a7
+  - enabled: 1
+    path: Assets/Scenes/FlashcardScene.unity
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
