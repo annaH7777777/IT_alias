@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,19 +19,32 @@ public class WordUiController : MonoBehaviour
         hintText.gameObject.SetActive(false);
     }
 
+    private void OnDestroy()
+    {
+        showHintButton.onClick.RemoveListener(OnShowHint);
+        backButton.onClick.RemoveListener(OnBackButtonClicked);
+    }
+
     private void OnBackButtonClicked()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("CategoryScene");
     }
 
     private void OnShowHint()
     {
         hintText.gameObject.SetActive(true);
-        audioSource.Play();
+        if (audioSource != null)
+            audioSource.Play();
     }
 
     public void SetWord(Word word)
     {
+        if (word == null)
+        {
+            Debug.LogError("Null word passed to SetWord");
+            return;
+        }
+
         wordText.text = word.word;
         hintText.text = word.hint;
     }

@@ -15,8 +15,8 @@ Data,A1,"Information, often in raw form, that can be processed or analyzed to pr
 Development,A2,"The process of creating or improving software, systems, or products, involving planning, coding, testing, and implementation."
 Solution,B1,A method or product designed to address and resolve a problem or meet a specific requirement or need.
 Screen,A1,"The display area on a computer, phone, or other device where visual information is shown."
-Function,A2,No description available.
-Process,B1,No description available.
+Function,A2,A set of instructions that performs a specific task in a program.
+Process,B1,A series of steps or actions taken to achieve a particular result.
 File,A1,"A collection of data or information stored on a computer or server, which can be accessed, opened, edited, and saved."
 Update,A2,"The process of making improvements or fixes to software or systems, often to enhance performance or security."
 Documentation,B1,"Written records or guides that provide detailed information about systems, software, or processes."
@@ -32,7 +32,7 @@ Architecture,B1,"The design and structure of a system, application, or network, 
 Icon,A1,"A small visual representation or symbol used to represent an application, file, function, or concept on a computer interface."
 Version,A2,"A specific iteration or release of a software program, often numbered to indicate updates or changes from previous versions."
 Stakeholder,B1,"A person, group, or organization that has an interest or concern in a project, product, or service and is affected by its outcome."
-Laptop,A1,No description available.
+Laptop,A1,A portable computer small enough to use on your lap.
 Interface,A2,"The point of interaction between a user and a system, application, or device, enabling input and output."
 User Experience,B1,"The overall experience a person has when interacting with a system or application, including factors like usability, design, and satisfaction."
 Keyboard,A1,An input device used for typing text and commands into a computer or other electronic device.
@@ -78,7 +78,7 @@ Acceptance Criteria,B2,The specific conditions or requirements that must be met 
 Agile Methodology,C1,"A project management and software development approach that emphasizes flexibility, iterative progress, and close collaboration between teams and stakeholders."
 Stakeholder Management,C2,The process of managing relationships and communication with stakeholders to ensure their needs and expectations are met throughout a project.
 Resource Allocation,B2,"The process of assigning or distributing available resources (people, time, money) to tasks or projects in order to meet objectives."
-Functional Specification,C1,"A detailed description of the system’s functionality, including what the system will do and how it will behave under different conditions."
+Functional Specification,C1,"A detailed description of the systemï¿½s functionality, including what the system will do and how it will behave under different conditions."
 Project Scope,C2,"The specific deliverables, boundaries, tasks, and timelines that define a project, including what is in and out of scope."
 Use Case,B2,A detailed description of how users interact with a system or product to achieve specific goals or outcomes.
 Release Management,C1,"The process of planning, scheduling, and controlling the deployment of software or systems to production environments."

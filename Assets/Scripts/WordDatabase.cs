@@ -3,7 +3,6 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using UnityEngine;
 
 [CreateAssetMenu(fileName = "WordDatabase", menuName = "AliasGame/WordDatabase")]
 public class WordDatabase : ScriptableObject

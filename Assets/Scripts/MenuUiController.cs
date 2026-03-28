@@ -25,12 +25,12 @@ public class MenuUiController : MonoBehaviour
 
     private void OnStartClicked()
     {
-        bool readFromGoofle = sourceToggle.isOn;
-        csvReader.StartLoading(readFromGoofle, b =>
+        bool readFromGoogle = sourceToggle.isOn;
+        csvReader.StartLoading(readFromGoogle, b =>
         {
             if (b)
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene("CategoryScene");
             }
             else
             {

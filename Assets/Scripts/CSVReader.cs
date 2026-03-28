@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 using Random = UnityEngine.Random;
@@ -61,13 +60,25 @@ public class CSVReader : MonoBehaviour
             {
                 string[] values = lines[i].Split(new char[] { ',' }, 3); // Split only at the first comma
 
-                if (values.Length == 3)
+                if (values.Length < 3)
+                {
+                    Debug.LogWarning($"Skipping malformed CSV line {i}: {lines[i]}");
+                    continue;
+                }
+
                 {
                     string word = values[0].Trim();
                     string level = values[1].Trim();
                     string text = values[2].Trim();
+
+                    if (string.IsNullOrEmpty(word) || string.IsNullOrEmpty(level) || string.IsNullOrEmpty(text))
+                    {
+                        Debug.LogWarning($"Skipping CSV line {i} with empty fields");
+                        continue;
+                    }
+
                     Word entry = new Word(word, level, text);
-                    
+
                     fullList.Add(entry);
                     
                     switch (level)
@@ -130,22 +141,23 @@ public class CSVReader : MonoBehaviour
 
     public Word GetRandomWord(string level)
     {
-        switch (level)
+        List<Word> list = level switch
         {
-            case "A1":
-                return a1WordList[Random.Range(0, a1WordList.Count)];
-            case "A2":
-                return a2WordList[Random.Range(0, a2WordList.Count)];
-            case "B1":
-                return b1WordList[Random.Range(0, b1WordList.Count)];
-            case "B2":
-                return b2WordList[Random.Range(0, b2WordList.Count)];
-            case "C1":
-                return c1WordList[Random.Range(0, c1WordList.Count)];
-            case "C2":
-                return c2WordList[Random.Range(0, c2WordList.Count)];
-            default:
-                return null;
+            "A1" => a1WordList,
+            "A2" => a2WordList,
+            "B1" => b1WordList,
+            "B2" => b2WordList,
+            "C1" => c1WordList,
+            "C2" => c2WordList,
+            _ => null
+        };
+
+        if (list == null || list.Count == 0)
+        {
+            Debug.LogWarning($"No words available for level: {level}");
+            return null;
         }
+
+        return list[Random.Range(0, list.Count)];
     }
 }

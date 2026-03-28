@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,14 +5,14 @@ using UnityEngine.UI;
 
 public class CategoryUiController : MonoBehaviour
 {
-    //[SerializeField] Dropdown categoryDropdown;
+    private const string PracticeScene = "WordScene";
+    private const string ChallengeScene = "ChallengeScene";
+
     [SerializeField] private TMP_Dropdown categoryDropdown;
     [SerializeField] Button startButton;
-    
-    
+
     void Start()
     {
-        //categoryDropdown.ClearOptions();
         startButton.onClick.AddListener(OnStartClicked);
     }
 
@@ -28,13 +25,12 @@ public class CategoryUiController : MonoBehaviour
     {
         if (categoryDropdown.value == 0)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(PracticeScene);
             Debug.Log("Selected practice mode");
         }
-            
         else
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(ChallengeScene);
             Debug.Log("Selected challenge mode");
         }
     }
