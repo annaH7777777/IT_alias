@@ -82,18 +82,18 @@ public class LearningSheetReader : MonoBehaviour
             string line = lines[i].Trim();
             if (string.IsNullOrEmpty(line)) continue;
 
-            string[] values = line.Split(new char[] { ',' }, 5);
-            if (values.Length < 2)
+            var values = CSVParser.SplitLine(line);
+            if (values.Count < 2)
             {
                 Debug.LogWarning($"Skipping malformed learning CSV line {i}: {line}");
                 continue;
             }
 
-            string word = values[0].Trim();
-            string translation = values.Length > 1 ? values[1].Trim() : "";
-            string synonym = values.Length > 2 ? values[2].Trim() : "";
-            string pronunciation = values.Length > 3 ? values[3].Trim() : "";
-            string date = values.Length > 4 ? values[4].Trim() : "";
+            string word = values[0];
+            string translation = values.Count > 1 ? values[1] : "";
+            string synonym = values.Count > 2 ? values[2] : "";
+            string pronunciation = values.Count > 3 ? values[3] : "";
+            string date = values.Count > 4 ? values[4] : "";
 
             if (string.IsNullOrEmpty(word)) continue;
 

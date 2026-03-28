@@ -58,18 +58,18 @@ public class CSVReader : MonoBehaviour
             // Start from index 1 to skip the header row
             for (int i = 1; i < lines.Length; i++)
             {
-                string[] values = lines[i].Split(new char[] { ',' }, 3); // Split only at the first comma
+                var values = CSVParser.SplitLine(lines[i]);
 
-                if (values.Length < 3)
+                if (values.Count < 3)
                 {
                     Debug.LogWarning($"Skipping malformed CSV line {i}: {lines[i]}");
                     continue;
                 }
 
                 {
-                    string word = values[0].Trim();
-                    string level = values[1].Trim();
-                    string text = values[2].Trim();
+                    string word = values[0];
+                    string level = values[1];
+                    string text = values[2];
 
                     if (string.IsNullOrEmpty(word) || string.IsNullOrEmpty(level) || string.IsNullOrEmpty(text))
                     {
