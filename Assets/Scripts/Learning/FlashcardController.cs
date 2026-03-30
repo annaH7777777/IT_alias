@@ -34,11 +34,12 @@ public class FlashcardController : MonoBehaviour
     {
         SceneManager.sceneLoaded += (scene, mode) =>
         {
-            if (scene.name == "FlashcardScene")
+            // Only start flashcards if FilteredWords is set (filter screen passed)
+            if (scene.name == "FlashcardScene" && FilterController.FilteredWords != null)
                 SetupScene();
         };
 
-        if (SceneManager.GetActiveScene().name == "FlashcardScene")
+        if (SceneManager.GetActiveScene().name == "FlashcardScene" && FilterController.FilteredWords != null)
             SetupScene();
     }
 
@@ -52,8 +53,8 @@ public class FlashcardController : MonoBehaviour
 
     private void Start()
     {
-        var reader = LearningSheetReader.Instance;
-        _words = reader.words;
+        _words = FilterController.FilteredWords;
+        FilterController.FilteredWords = null; // consume so filter shows next time
 
         if (_words == null || _words.Count == 0)
         {
@@ -207,7 +208,7 @@ public class FlashcardController : MonoBehaviour
         navLayout.childControlWidth = false;
         navLayout.childControlHeight = false;
 
-        CreateNavButton(navRect, "Back", "\u25C0  Back", 200, 80, () => SceneManager.LoadScene("MenuScene"));
+        CreateNavButton(navRect, "Back", "\u25C0  Back", 200, 80, () => SceneManager.LoadScene("FlashcardScene"));
         CreateNavButton(navRect, "Prev", "\u25C0  Prev", 200, 80, PrevCard);
         CreateNavButton(navRect, "Next", "Next  \u25B6", 200, 80, NextCard);
     }

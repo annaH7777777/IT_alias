@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -94,12 +95,41 @@ public class LearningSheetReader : MonoBehaviour
             string synonym = values.Count > 2 ? values[2] : "";
             string pronunciation = values.Count > 3 ? values[3] : "";
             string date = values.Count > 4 ? values[4] : "";
+            string category = values.Count > 5 ? values[5] : "";
 
             if (string.IsNullOrEmpty(word)) continue;
 
-            words.Add(new LearningWord(word, translation, synonym, pronunciation, date));
+            words.Add(new LearningWord(word, translation, synonym, pronunciation, date, category));
         }
 
         Debug.Log($"Loaded {words.Count} learning words.");
+    }
+
+    public List<string> GetUniqueCategories()
+    {
+        return words
+            .Select(w => w.category)
+            .Where(c => !string.IsNullOrEmpty(c))
+            .Distinct()
+            .OrderBy(c => c)
+            .ToList();
+    }
+
+    public List<string> GetUniqueDates()
+    {
+        return words
+            .Select(w => w.date)
+            .Where(d => !string.IsNullOrEmpty(d))
+            .Distinct()
+            .OrderByDescending(d => d)
+            .ToList();
+    }
+
+    public List<LearningWord> GetFilteredWords(string category, string date)
+    {
+        return words.Where(w =>
+            (string.IsNullOrEmpty(category) || w.category == category) &&
+            (string.IsNullOrEmpty(date) || w.date == date)
+        ).ToList();
     }
 }

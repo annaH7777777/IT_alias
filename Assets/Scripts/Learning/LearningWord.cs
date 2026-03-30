@@ -6,13 +6,15 @@ public class LearningWord
     public string synonym;
     public string pronunciation;
     public string date;
+    public string category;
 
-    public LearningWord(string word, string translation, string synonym, string pronunciation, string date)
+    public LearningWord(string word, string translation, string synonym, string pronunciation, string date, string category)
     {
         this.word = word;
         this.translation = translation;
         this.synonym = synonym;
         this.pronunciation = pronunciation;
         this.date = date;
+        this.category = category;
     }
 }
