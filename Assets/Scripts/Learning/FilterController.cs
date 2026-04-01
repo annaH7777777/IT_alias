@@ -12,9 +12,11 @@ public class FilterController : MonoBehaviour
 {
     // Shared state: FlashcardController reads this after filter screen
     public static List<LearningWord> FilteredWords;
+    public static bool TranslationFirst;
 
     private TMP_Dropdown _categoryDropdown;
     private TMP_Dropdown _dateDropdown;
+    private Toggle _translationFirstToggle;
     private TextMeshProUGUI _countText;
     private List<string> _categories;
     private List<string> _dates;
@@ -103,10 +105,14 @@ public class FilterController : MonoBehaviour
         PopulateDropdown(_dateDropdown, _dates, "All dates");
         _dateDropdown.onValueChanged.AddListener(_ => UpdateCount());
 
+        // Translation-first toggle
+        _translationFirstToggle = CreateToggleRow(canvasRect, "TranslationFirstToggle",
+            "Translation first", new Vector2(80, -780), new Vector2(-80, -720));
+
         // Word count
         _countText = CreateText(canvasRect, "CountText",
             new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1),
-            new Vector2(40, -800), new Vector2(-40, -740),
+            new Vector2(40, -880), new Vector2(-40, -820),
             36, TextAlignmentOptions.Center, Theme.TextMuted);
 
         // Start button
@@ -143,6 +149,7 @@ public class FilterController : MonoBehaviour
         }
 
         FilteredWords = filtered;
+        TranslationFirst = _translationFirstToggle.isOn;
         // Destroy filter UI, FlashcardController will detect FilteredWords != null
         Destroy(gameObject);
 
@@ -325,6 +332,65 @@ public class FilterController : MonoBehaviour
         templateObj.SetActive(false);
 
         return dropdown;
+    }
+
+    private Toggle CreateToggleRow(RectTransform parent, string name, string label,
+        Vector2 offsetMin, Vector2 offsetMax)
+    {
+        var obj = new GameObject(name);
+        obj.transform.SetParent(parent, false);
+
+        var rect = obj.AddComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0, 1);
+        rect.anchorMax = new Vector2(1, 1);
+        rect.pivot = new Vector2(0.5f, 1);
+        rect.offsetMin = offsetMin;
+        rect.offsetMax = offsetMax;
+
+        // Checkbox background
+        var checkboxObj = new GameObject("Checkbox");
+        checkboxObj.transform.SetParent(rect, false);
+        var checkboxRect = checkboxObj.AddComponent<RectTransform>();
+        checkboxRect.anchorMin = new Vector2(0, 0.5f);
+        checkboxRect.anchorMax = new Vector2(0, 0.5f);
+        checkboxRect.sizeDelta = new Vector2(50, 50);
+        checkboxRect.anchoredPosition = new Vector2(25, 0);
+        var checkboxBg = checkboxObj.AddComponent<Image>();
+        checkboxBg.color = Theme.CardBackground;
+
+        // Checkmark
+        var checkmarkObj = new GameObject("Checkmark");
+        checkmarkObj.transform.SetParent(checkboxRect, false);
+        var checkmarkRect = checkmarkObj.AddComponent<RectTransform>();
+        checkmarkRect.anchorMin = new Vector2(0.15f, 0.15f);
+        checkmarkRect.anchorMax = new Vector2(0.85f, 0.85f);
+        checkmarkRect.offsetMin = Vector2.zero;
+        checkmarkRect.offsetMax = Vector2.zero;
+        var checkmarkImage = checkmarkObj.AddComponent<Image>();
+        checkmarkImage.color = Theme.ButtonPrimaryText;
+
+        // Toggle component
+        var toggle = obj.AddComponent<Toggle>();
+        toggle.isOn = false;
+        toggle.targetGraphic = checkboxBg;
+        toggle.graphic = checkmarkImage;
+
+        // Label text
+        var labelObj = new GameObject("Label");
+        labelObj.transform.SetParent(rect, false);
+        var labelRect = labelObj.AddComponent<RectTransform>();
+        labelRect.anchorMin = Vector2.zero;
+        labelRect.anchorMax = Vector2.one;
+        labelRect.offsetMin = new Vector2(70, 0);
+        labelRect.offsetMax = Vector2.zero;
+        var labelText = labelObj.AddComponent<TextMeshProUGUI>();
+        labelText.text = label;
+        labelText.fontSize = 32;
+        labelText.alignment = TextAlignmentOptions.Left;
+        labelText.color = Theme.TextWhite;
+        labelText.raycastTarget = false;
+
+        return toggle;
     }
 
     private Button CreateButton(RectTransform parent, string name, string label,

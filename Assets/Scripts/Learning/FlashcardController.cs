@@ -15,6 +15,7 @@ public class FlashcardController : MonoBehaviour
     private List<LearningWord> _words;
     private int _currentIndex;
     private bool _isFlipped;
+    private bool _translationFirst;
 
     // UI references (created at runtime)
     private TextMeshProUGUI _wordText;
@@ -54,6 +55,7 @@ public class FlashcardController : MonoBehaviour
     private void Start()
     {
         _words = FilterController.FilteredWords;
+        _translationFirst = FilterController.TranslationFirst;
         FilterController.FilteredWords = null; // consume so filter shows next time
 
         if (_words == null || _words.Count == 0)
@@ -219,12 +221,28 @@ public class FlashcardController : MonoBehaviour
 
         var word = _words[_currentIndex];
 
-        _wordText.text = word.word;
-        _pronunciationText.text = string.IsNullOrEmpty(word.pronunciation) ? "" : word.pronunciation;
+        if (_translationFirst)
+        {
+            // Front shows translation, back shows word + details
+            _wordText.text = string.IsNullOrEmpty(word.translation) ? "(no translation)" : word.translation;
+            _pronunciationText.text = "";
 
-        _translationText.text = string.IsNullOrEmpty(word.translation) ? "(no translation)" : word.translation;
-        _synonymText.text = string.IsNullOrEmpty(word.synonym) ? "" : $"syn: {word.synonym}";
-        _dateText.text = string.IsNullOrEmpty(word.date) ? "" : word.date;
+            _translationText.text = word.word;
+            _synonymText.text = string.IsNullOrEmpty(word.synonym) ? "" : $"syn: {word.synonym}";
+            _dateText.text = string.IsNullOrEmpty(word.pronunciation) ? "" : word.pronunciation;
+            if (!string.IsNullOrEmpty(word.date))
+                _dateText.text += (string.IsNullOrEmpty(_dateText.text) ? "" : "\n") + word.date;
+        }
+        else
+        {
+            // Default: front shows word, back shows translation + details
+            _wordText.text = word.word;
+            _pronunciationText.text = string.IsNullOrEmpty(word.pronunciation) ? "" : word.pronunciation;
+
+            _translationText.text = string.IsNullOrEmpty(word.translation) ? "(no translation)" : word.translation;
+            _synonymText.text = string.IsNullOrEmpty(word.synonym) ? "" : $"syn: {word.synonym}";
+            _dateText.text = string.IsNullOrEmpty(word.date) ? "" : word.date;
+        }
 
         _frontDateText.text = string.IsNullOrEmpty(word.date) ? "" : word.date;
         _progressText.text = $"{_currentIndex + 1} / {_words.Count}";
