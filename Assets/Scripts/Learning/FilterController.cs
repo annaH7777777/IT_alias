@@ -13,10 +13,12 @@ public class FilterController : MonoBehaviour
     // Shared state: FlashcardController reads this after filter screen
     public static List<LearningWord> FilteredWords;
     public static bool TranslationFirst;
+    public static bool Shuffle;
 
     private TMP_Dropdown _categoryDropdown;
     private TMP_Dropdown _dateDropdown;
     private Toggle _translationFirstToggle;
+    private Toggle _shuffleToggle;
     private TextMeshProUGUI _countText;
     private List<string> _categories;
     private List<string> _dates;
@@ -109,10 +111,15 @@ public class FilterController : MonoBehaviour
         _translationFirstToggle = CreateToggleRow(canvasRect, "TranslationFirstToggle",
             "Translation first", new Vector2(80, -780), new Vector2(-80, -720));
 
+        // Shuffle toggle
+        _shuffleToggle = CreateToggleRow(canvasRect, "ShuffleToggle",
+            "Shuffle", new Vector2(80, -860), new Vector2(-80, -800));
+        _shuffleToggle.isOn = false;
+
         // Word count
         _countText = CreateText(canvasRect, "CountText",
             new Vector2(0, 1), new Vector2(1, 1), new Vector2(0.5f, 1),
-            new Vector2(40, -880), new Vector2(-40, -820),
+            new Vector2(40, -960), new Vector2(-40, -900),
             36, TextAlignmentOptions.Center, Theme.TextMuted);
 
         // Start button
@@ -146,6 +153,17 @@ public class FilterController : MonoBehaviour
         {
             _countText.text = "No words match this filter!";
             return;
+        }
+
+        if (_shuffleToggle.isOn)
+        {
+            for (int i = filtered.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                var temp = filtered[i];
+                filtered[i] = filtered[j];
+                filtered[j] = temp;
+            }
         }
 
         FilteredWords = filtered;
