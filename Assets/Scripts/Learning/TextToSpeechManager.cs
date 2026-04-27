@@ -134,6 +134,16 @@ public class TextToSpeechManager : MonoBehaviour
             _owner._pendingInitStatus = status;
         }
     }
+#elif UNITY_WEBGL && !UNITY_EDITOR
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    private static extern void WebGLSpeak(string text);
+
+    public void Speak(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return;
+        try { WebGLSpeak(text); }
+        catch (System.Exception e) { Debug.LogError("WebGL TTS failed: " + e.Message); }
+    }
 #else
     public void Speak(string text)
     {
