@@ -160,6 +160,8 @@ public class FlashcardController : MonoBehaviour
             color: Theme.TextMuted);
         tapHint.text = "tap to flip";
 
+        CreateSpeakerButton(frontRect, "FrontSpeaker");
+
         // --- Back side (hidden initially) ---
         _backSide = new GameObject("BackSide");
         _backSide.transform.SetParent(_cardRect, false);
@@ -194,6 +196,8 @@ public class FlashcardController : MonoBehaviour
             offsetMin: Vector2.zero, offsetMax: Vector2.zero,
             fontSize: 28, alignment: TextAlignmentOptions.Center,
             color: Theme.TextMuted);
+
+        CreateSpeakerButton(backRect, "BackSpeaker");
 
         // === Navigation buttons (bottom) ===
         var navObj = new GameObject("Navigation");
@@ -344,6 +348,43 @@ public class FlashcardController : MonoBehaviour
         tmp.raycastTarget = false;
 
         return tmp;
+    }
+
+    private void CreateSpeakerButton(RectTransform parent, string name)
+    {
+        var obj = new GameObject(name);
+        obj.transform.SetParent(parent, false);
+
+        var rect = obj.AddComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0.82f, 0.82f);
+        rect.anchorMax = new Vector2(1f, 1f);
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
+
+        var image = obj.AddComponent<Image>();
+        image.color = new Color(0f, 0f, 0f, 0.08f);
+
+        var button = obj.AddComponent<Button>();
+        button.onClick.AddListener(() =>
+        {
+            if (_words != null && _words.Count > 0)
+                TextToSpeechManager.Instance.Speak(_words[_currentIndex].word);
+        });
+
+        var iconObj = new GameObject("Icon");
+        iconObj.transform.SetParent(rect, false);
+        var iconRect = iconObj.AddComponent<RectTransform>();
+        iconRect.anchorMin = Vector2.zero;
+        iconRect.anchorMax = Vector2.one;
+        iconRect.offsetMin = Vector2.zero;
+        iconRect.offsetMax = Vector2.zero;
+
+        var icon = iconObj.AddComponent<TextMeshProUGUI>();
+        icon.text = "\u266B";
+        icon.fontSize = 48;
+        icon.alignment = TextAlignmentOptions.Center;
+        icon.color = Theme.TextDark;
+        icon.raycastTarget = false;
     }
 
     private void CreateNavButton(RectTransform parent, string name, string label, float width, float height, UnityEngine.Events.UnityAction onClick)

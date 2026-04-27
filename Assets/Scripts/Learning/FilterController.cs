@@ -16,12 +16,16 @@ public class FilterController : MonoBehaviour
     public static bool Shuffle;
 
     private TMP_Dropdown _categoryDropdown;
-    private TMP_Dropdown _dateDropdown;
+    private TMP_Dropdown _yearDropdown;
+    private TMP_Dropdown _monthDropdown;
+    private TMP_Dropdown _dayDropdown;
     private Toggle _translationFirstToggle;
     private Toggle _shuffleToggle;
     private TextMeshProUGUI _countText;
     private List<string> _categories;
-    private List<string> _dates;
+    private List<int> _years;
+    private List<int> _months;
+    private List<int> _days;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void OnSceneLoaded()
@@ -55,7 +59,9 @@ public class FilterController : MonoBehaviour
         }
 
         _categories = reader.GetUniqueCategories();
-        _dates = reader.GetUniqueDates();
+        _years = reader.GetUniqueYears();
+        _months = reader.GetUniqueMonths(null);
+        _days = reader.GetUniqueDays(null, null);
         BuildUI();
         UpdateCount();
     }
@@ -101,11 +107,24 @@ public class FilterController : MonoBehaviour
             new Vector2(80, -560), new Vector2(-80, -500),
             34, TextAlignmentOptions.Left, Theme.TextWhite).text = "Date:";
 
-        // Date dropdown
-        _dateDropdown = CreateDropdown(canvasRect, "DateDropdown",
-            new Vector2(80, -680), new Vector2(-80, -580));
-        PopulateDropdown(_dateDropdown, _dates, "All dates");
-        _dateDropdown.onValueChanged.AddListener(_ => UpdateCount());
+        // Year / Month / Day dropdowns (side by side, fractional anchors so widths scale with canvas)
+        _yearDropdown = CreateDropdown(canvasRect, "YearDropdown",
+            new Vector2(0.04f, 1), new Vector2(0.34f, 1),
+            new Vector2(0, -680), new Vector2(0, -580));
+        PopulateIntDropdown(_yearDropdown, _years, "Year", v => v.ToString());
+        _yearDropdown.onValueChanged.AddListener(_ => OnYearChanged());
+
+        _monthDropdown = CreateDropdown(canvasRect, "MonthDropdown",
+            new Vector2(0.36f, 1), new Vector2(0.64f, 1),
+            new Vector2(0, -680), new Vector2(0, -580));
+        PopulateIntDropdown(_monthDropdown, _months, "Month", LearningSheetReader.MonthName);
+        _monthDropdown.onValueChanged.AddListener(_ => OnMonthChanged());
+
+        _dayDropdown = CreateDropdown(canvasRect, "DayDropdown",
+            new Vector2(0.66f, 1), new Vector2(0.96f, 1),
+            new Vector2(0, -680), new Vector2(0, -580));
+        PopulateIntDropdown(_dayDropdown, _days, "Day", v => v.ToString());
+        _dayDropdown.onValueChanged.AddListener(_ => UpdateCount());
 
         // Translation-first toggle
         _translationFirstToggle = CreateToggleRow(canvasRect, "TranslationFirstToggle",
@@ -135,19 +154,42 @@ public class FilterController : MonoBehaviour
         backBtn.onClick.AddListener(() => SceneManager.LoadScene("MenuScene"));
     }
 
+    private void OnYearChanged()
+    {
+        int? year = GetSelectedInt(_yearDropdown, _years);
+        _months = LearningSheetReader.Instance.GetUniqueMonths(year);
+        PopulateIntDropdown(_monthDropdown, _months, "Month", LearningSheetReader.MonthName);
+        _days = LearningSheetReader.Instance.GetUniqueDays(year, null);
+        PopulateIntDropdown(_dayDropdown, _days, "Day", v => v.ToString());
+        UpdateCount();
+    }
+
+    private void OnMonthChanged()
+    {
+        int? year = GetSelectedInt(_yearDropdown, _years);
+        int? month = GetSelectedInt(_monthDropdown, _months);
+        _days = LearningSheetReader.Instance.GetUniqueDays(year, month);
+        PopulateIntDropdown(_dayDropdown, _days, "Day", v => v.ToString());
+        UpdateCount();
+    }
+
     private void UpdateCount()
     {
         string cat = GetSelectedValue(_categoryDropdown, _categories);
-        string date = GetSelectedValue(_dateDropdown, _dates);
-        var filtered = LearningSheetReader.Instance.GetFilteredWords(cat, date);
+        int? year = GetSelectedInt(_yearDropdown, _years);
+        int? month = GetSelectedInt(_monthDropdown, _months);
+        int? day = GetSelectedInt(_dayDropdown, _days);
+        var filtered = LearningSheetReader.Instance.GetFilteredWords(cat, year, month, day);
         _countText.text = $"{filtered.Count} words found";
     }
 
     private void OnStartLearning()
     {
         string cat = GetSelectedValue(_categoryDropdown, _categories);
-        string date = GetSelectedValue(_dateDropdown, _dates);
-        var filtered = LearningSheetReader.Instance.GetFilteredWords(cat, date);
+        int? year = GetSelectedInt(_yearDropdown, _years);
+        int? month = GetSelectedInt(_monthDropdown, _months);
+        int? day = GetSelectedInt(_dayDropdown, _days);
+        var filtered = LearningSheetReader.Instance.GetFilteredWords(cat, year, month, day);
 
         if (filtered.Count == 0)
         {
@@ -182,12 +224,28 @@ public class FilterController : MonoBehaviour
         return values[dropdown.value - 1];
     }
 
+    private int? GetSelectedInt(TMP_Dropdown dropdown, List<int> values)
+    {
+        if (dropdown.value == 0 || dropdown.value > values.Count) return null;
+        return values[dropdown.value - 1];
+    }
+
     private void PopulateDropdown(TMP_Dropdown dropdown, List<string> values, string allLabel)
     {
         dropdown.ClearOptions();
         var options = new List<string> { allLabel };
         options.AddRange(values);
         dropdown.AddOptions(options);
+    }
+
+    private void PopulateIntDropdown(TMP_Dropdown dropdown, List<int> values, string allLabel, System.Func<int, string> formatter)
+    {
+        dropdown.ClearOptions();
+        var options = new List<string> { allLabel };
+        foreach (var v in values) options.Add(formatter(v));
+        dropdown.AddOptions(options);
+        dropdown.value = 0;
+        dropdown.RefreshShownValue();
     }
 
     // --- UI Helpers ---
@@ -219,12 +277,18 @@ public class FilterController : MonoBehaviour
 
     private TMP_Dropdown CreateDropdown(RectTransform parent, string name, Vector2 offsetMin, Vector2 offsetMax)
     {
+        return CreateDropdown(parent, name, new Vector2(0, 1), new Vector2(1, 1), offsetMin, offsetMax);
+    }
+
+    private TMP_Dropdown CreateDropdown(RectTransform parent, string name,
+        Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax)
+    {
         var obj = new GameObject(name);
         obj.transform.SetParent(parent, false);
 
         var rect = obj.AddComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0, 1);
-        rect.anchorMax = new Vector2(1, 1);
+        rect.anchorMin = anchorMin;
+        rect.anchorMax = anchorMax;
         rect.pivot = new Vector2(0.5f, 1);
         rect.offsetMin = offsetMin;
         rect.offsetMax = offsetMax;
