@@ -7,8 +7,9 @@ public class LearningWord
     public string pronunciation;
     public string date;
     public string category;
+    public int order;
 
-    public LearningWord(string word, string translation, string synonym, string pronunciation, string date, string category)
+    public LearningWord(string word, string translation, string synonym, string pronunciation, string date, string category, int order = 0)
     {
         this.word = word;
         this.translation = translation;
@@ -16,5 +17,6 @@ public class LearningWord
         this.pronunciation = pronunciation;
         this.date = date;
         this.category = category;
+        this.order = order;
     }
 }

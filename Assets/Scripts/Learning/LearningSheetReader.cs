@@ -76,33 +76,62 @@ public class LearningSheetReader : MonoBehaviour
     {
         words.Clear();
         string[] lines = csvText.Split('\n');
+        if (lines.Length == 0) return;
 
-        // Skip header row (Word, Translation, Synonym, Pronunciation, Date)
+        var header = CSVParser.SplitLine(lines[0].Trim());
+        int wordIdx = FindColumn(header, "word");
+        int translationIdx = FindColumn(header, "translation/meaning", "translation", "meaning");
+        int synonymIdx = FindColumn(header, "synonym");
+        int pronunciationIdx = FindColumn(header, "pronunciation");
+        int dateIdx = FindColumn(header, "date");
+        int categoryIdx = FindColumn(header, "category");
+        int orderIdx = FindColumn(header, "order");
+
+        if (wordIdx < 0)
+        {
+            Debug.LogError("CSV is missing a 'Word' column in the header row.");
+            return;
+        }
+
         for (int i = 1; i < lines.Length; i++)
         {
             string line = lines[i].Trim();
             if (string.IsNullOrEmpty(line)) continue;
 
             var values = CSVParser.SplitLine(line);
-            if (values.Count < 2)
-            {
-                Debug.LogWarning($"Skipping malformed learning CSV line {i}: {line}");
-                continue;
-            }
-
-            string word = values[0];
-            string translation = values.Count > 1 ? values[1] : "";
-            string synonym = values.Count > 2 ? values[2] : "";
-            string pronunciation = values.Count > 3 ? values[3] : "";
-            string date = values.Count > 4 ? values[4] : "";
-            string category = values.Count > 5 ? values[5] : "";
-
+            string word = GetField(values, wordIdx);
             if (string.IsNullOrEmpty(word)) continue;
 
-            words.Add(new LearningWord(word, translation, synonym, pronunciation, date, category));
+            string translation = GetField(values, translationIdx);
+            string synonym = GetField(values, synonymIdx);
+            string pronunciation = GetField(values, pronunciationIdx);
+            string date = GetField(values, dateIdx);
+            string category = GetField(values, categoryIdx);
+            int order = 0;
+            if (orderIdx >= 0 && orderIdx < values.Count)
+                int.TryParse(values[orderIdx], out order);
+
+            words.Add(new LearningWord(word, translation, synonym, pronunciation, date, category, order));
         }
 
         Debug.Log($"Loaded {words.Count} learning words.");
+    }
+
+    private static int FindColumn(List<string> header, params string[] candidates)
+    {
+        for (int i = 0; i < header.Count; i++)
+        {
+            string h = header[i].Trim().ToLowerInvariant();
+            foreach (var c in candidates)
+                if (h == c) return i;
+        }
+        return -1;
+    }
+
+    private static string GetField(List<string> values, int idx)
+    {
+        if (idx < 0 || idx >= values.Count) return "";
+        return values[idx];
     }
 
     public List<string> GetUniqueCategories()

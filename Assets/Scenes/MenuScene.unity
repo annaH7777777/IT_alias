@@ -508,8 +508,52 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1375248659}
     - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordsButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
       propertyPath: learningSheetURL
       value: https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0yMG-FWeEL0C3QIGyUtlT8zPMq1loOp1XvvTujD-WKYwSwpDb1oO6mBC38vvBb4lP-NL-_Wd7yZhe/pub?gid=1561910084&single=true&output=csv
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordsListSheetURL
+      value: https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0yMG-FWeEL0C3QIGyUtlT8zPMq1loOp1XvvTujD-WKYwSwpDb1oO6mBC38vvBb4lP-NL-_Wd7yZhe/pub?gid=1869145293&single=true&output=csv
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordLists.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordLists.Array.data[0].url
+      value: https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0yMG-FWeEL0C3QIGyUtlT8zPMq1loOp1XvvTujD-WKYwSwpDb1oO6mBC38vvBb4lP-NL-_Wd7yZhe/pub?gid=1561910084&single=true&output=csv
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordLists.Array.data[1].url
+      value: https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0yMG-FWeEL0C3QIGyUtlT8zPMq1loOp1XvvTujD-WKYwSwpDb1oO6mBC38vvBb4lP-NL-_Wd7yZhe/pub?gid=1869145293&single=true&output=csv
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordLists.Array.data[2].url
+      value: https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0yMG-FWeEL0C3QIGyUtlT8zPMq1loOp1XvvTujD-WKYwSwpDb1oO6mBC38vvBb4lP-NL-_Wd7yZhe/pub?gid=410287625&single=true&output=csv
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordLists.Array.data[0].hasFilters
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordLists.Array.data[1].hasFilters
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordLists.Array.data[0].displayName
+      value: Anna
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordLists.Array.data[1].displayName
+      value: Irina 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702018283032177402, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
+      propertyPath: wordLists.Array.data[2].displayName
+      value: Irina 2
       objectReference: {fileID: 0}
     - target: {fileID: 7611592813626569719, guid: 06d8e9162ccbcaf4fa11ee1482d0fb88, type: 3}
       propertyPath: m_Pivot.x
